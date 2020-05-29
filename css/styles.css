@@ -1,0 +1,8 @@
+body{
+  background-color: #1d1e22;
+}
+
+.scene{
+  width: 50%; 
+  border-right: 5px solid #1a1b1f;
+}
