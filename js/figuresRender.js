@@ -27,6 +27,7 @@ const renderScene = () =>{
 }
 
 const renderSphere = (radius) =>{
+  clearScene();
   const widthSegments = 32;
   const heightSegments = 32;
   let geometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
@@ -40,6 +41,7 @@ const renderSphere = (radius) =>{
 }
 
 const renderCube = (width, height, depth) =>{
+  clearScene();
   let geometry = new THREE.BoxGeometry(width, height, depth);
   let material = new THREE.MeshNormalMaterial();
   let cube = new THREE.Mesh(geometry, material);
@@ -51,6 +53,7 @@ const renderCube = (width, height, depth) =>{
 }
 
 const renderPyramid = (radius, height, angleQuantity) =>{
+  clearScene();
   let geometry = new THREE.ConeGeometry(radius, height, angleQuantity);
   let material = new THREE.MeshNormalMaterial();
   let pyramid = new THREE.Mesh(geometry, material);

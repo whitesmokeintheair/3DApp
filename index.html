@@ -24,19 +24,19 @@
       <div id="info" class="info-container">
         <ul class="radio-group figures">
           <li>
-            <input id="cube" type="radio" name="figure" value="cube" />
-            <label for="cube">Cube</label>
+            <input id="cubeRadio" type="radio" name="figure" value="cube" onclick="showCubeForm()"/>
+            <label for="cubeRadio">Параллелепипед</label>
           </li>
           <li>
-            <input id="sphere" type="radio" name="figure" value="sphere" />
-            <label for="sphere">Sphere</label>
+            <input id="sphereRadio" type="radio" name="figure" value="sphere" onclick="showSphereForm()"/>
+            <label for="sphereRadio">Сфера</label>
           </li>
           <li>
-            <input id="pyramid" type="radio" name="figure" value="pyramid" />
-            <label for="pyramid">Pyramid</label>
+            <input id="pyramidRadio" type="radio" name="figure" value="pyramid" onclick="showPyramidForm()"/>
+            <label for="pyramidRadio">Пирамида</label>
           </li>
         </ul>
-        <div class="info-container__inputs"></div>
+        <div id="inputsForm" class="info-container__inputs"></div>
       </div>
     </div>
   </main>

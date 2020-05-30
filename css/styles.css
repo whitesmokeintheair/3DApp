@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #1e1f26;
+  background-color: #1f2029;
 }
 
 .container {
@@ -10,7 +10,12 @@ body {
 
 .scene-container {
   width: 50%;
-  height: 93vh;
+  height: 91.5vh;
+}
+
+canvas{
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .header-wrap {
@@ -39,13 +44,16 @@ body {
   list-style-type: none;
   margin: 25px 0 0 0;
   padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 0 0 2rem;
 }
 
 .radio-group li {
   float: left;
   margin: 0 5px 0 0;
-  width: 100px;
-  height: 40px;
+  width: 9em;
+  height: 45px;
   position: relative;
 }
 
@@ -61,7 +69,7 @@ body {
 
 .radio-group label {
   background-color: #353746;
-  padding: 5px;
+  padding: 1em;
   cursor: pointer;
   z-index: 90;
   box-shadow: 0 2px 2px rgba(0,0,0,0.15);
@@ -72,4 +80,35 @@ body {
 
 .radio-group input[type="radio"]:checked+label {
   background-image: linear-gradient(298deg, #f7a837, #db304d);
+}
+
+.info-container__inputs{
+  height: 70vh;
+  padding: 3rem 2rem 0 2rem;
+}
+
+.info-container__inputs form{
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+}
+
+.info-container__inputs form input{
+  margin: .5rem 0 2rem 0;
+  width: 70%;
+}
+
+.info-container .submitBtn{
+  background-color: #353746;
+  border: none;
+  color: white;
+  width: fit-content;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.15);
+}
+
+.error{
+  border-color: red;
+  position: relative;
+  color: red;
 }
