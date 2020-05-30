@@ -1,12 +1,6 @@
 let inputs = document.getElementById("inputsForm");
 
 renderScene();
-// renderSphere(20);
-// clearScene();
-// renderCube(40, 40, 40);
-// clearScene();
-// renderPyramid(20, 40, 5);
-
 
 function clearInputForm(){
   inputs.innerHTML = '';
@@ -165,6 +159,6 @@ function validateForm(){
       validated === false ? validated = false : validated = true;
     }
   })
-
   return validated;
 }
+

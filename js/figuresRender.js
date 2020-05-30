@@ -1,5 +1,5 @@
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth/2 /window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / 2 / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer();
 const gridHelper = new THREE.GridHelper(360, 20);
 
@@ -8,25 +8,37 @@ let currentFigure;
 const sceneHTML = document.getElementById('scene');
 sceneHTML.appendChild(renderer.domElement);
 
-render = () => { 
-  renderer.render(scene, camera); 
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+renderer.domElement.onmousemove = () => {
+  animate();
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+render = () => {
+  renderer.render(scene, camera);
 };
 
-const renderScene = () =>{
-  scene.background = new THREE.Color( 0x1a1b1f )
+const renderScene = () => {
+  scene.background = new THREE.Color(0x1a1b1f)
 
-  renderer.setSize( window.innerWidth/2, window.innerHeight);
-  
+  renderer.setSize(window.innerWidth / 2, window.innerHeight);
+
   gridHelper.colorGrid = 0xE8E8E8;
-  scene.add( gridHelper );
-  
-  camera.position.set( 150, 50, 15 );
-  camera.lookAt( figurePosition );
-  
+  scene.add(gridHelper);
+
+  camera.position.set(150, 50, 15);
+  camera.lookAt(figurePosition);
+
   render();
 }
 
-const renderSphere = (radius) =>{
+const renderSphere = (radius) => {
   clearScene();
   const widthSegments = 32;
   const heightSegments = 32;
@@ -40,30 +52,30 @@ const renderSphere = (radius) =>{
   render();
 }
 
-const renderCube = (width, height, depth) =>{
+const renderCube = (width, height, depth) => {
   clearScene();
   let geometry = new THREE.BoxGeometry(width, height, depth);
   let material = new THREE.MeshNormalMaterial();
   let cube = new THREE.Mesh(geometry, material);
   currentFigure = cube;
-  figurePosition = new THREE.Vector3(12, gridHelper.position.y + height/2, 12);
+  figurePosition = new THREE.Vector3(12, gridHelper.position.y + height / 2, 12);
   cube.position.copy(figurePosition);
   scene.add(cube);
   render();
 }
 
-const renderPyramid = (radius, height, angleQuantity) =>{
+const renderPyramid = (radius, height, angleQuantity) => {
   clearScene();
   let geometry = new THREE.ConeGeometry(radius, height, angleQuantity);
   let material = new THREE.MeshNormalMaterial();
   let pyramid = new THREE.Mesh(geometry, material);
   currentFigure = pyramid;
-  figurePosition = new THREE.Vector3(12, gridHelper.position.y + height/2, 12);
+  figurePosition = new THREE.Vector3(12, gridHelper.position.y + height / 2, 12);
   scene.add(pyramid);
   pyramid.position.copy(figurePosition);
   render();
 }
 
-const clearScene = () =>{
+const clearScene = () => {
   scene.remove(currentFigure);
 }
