@@ -21,30 +21,10 @@ function removeValidityError(el){
  }
 }
 
-function saveJsonButton (name, params) {
-  const buttonSaveJson = document.createElement('button');
-  buttonSaveJson.innerText = "Зберегти вхідні дані";
-  buttonSaveJson.setAttribute('class', 'submitBtn');
-  buttonSaveJson.onclick = () =>{
-    exportJson(name, params)
-  }
-  inputs.appendChild(buttonSaveJson)
-}
-
-function saveObjButton (name) {
-  const buttonSaveObj = document.createElement('button');
-  buttonSaveObj.innerText = "Експортувати в obj файл";
-  buttonSaveObj.setAttribute('class', 'submitBtn');
-  buttonSaveObj.onclick = () =>{
-    exportObj(name,mesh)
-  }
-  inputs.appendChild(buttonSaveObj)
-}
-
 function showCubeForm(){
   clearInputForm();
   let form = document.createElement('form');
-
+  
   let labelWidth = document.createElement('label');
   let inputWidth = document.createElement('input');
   let labelHeight = document.createElement('label');
@@ -52,6 +32,21 @@ function showCubeForm(){
   let labelDepth = document.createElement('label');
   let inputDepth = document.createElement('input');
   let buttonSubmit = document.createElement('button');
+  let importButton = importCubeData(({ width, height, depth }) => {
+    console.log(width, height, depth)
+    inputWidth.value = width
+    inputHeight.value = height
+    inputDepth.value = depth
+    renderCubeAndExportButtons(width, height, depth)
+  })
+
+  let renderCubeAndExportButtons = (width, height, depth) => {
+    const filename = `cube-${width}-${height}-${depth}`
+    importButton.remove()
+    saveJsonButton(filename, { width, height, depth })
+    saveObjButton(filename)
+    showCube(width, height, depth)
+  }
 
   labelWidth.innerText = "Введите длинну стороны: ";
   labelHeight.innerText = "Введите высоту: ";
@@ -69,10 +64,7 @@ function showCubeForm(){
     let depth = Number.parseFloat(inputDepth.value);
 
     if(validateForm(inputDepth, inputHeight, inputWidth)){
-      showCube(width, height, depth);
-      const filename = `cube-${width}-${height}-${depth}`
-      saveJsonButton(filename, { width, height, depth })
-      saveObjButton(filename)
+      renderCubeAndExportButtons(width, height, depth)
     }
   }
 
@@ -84,6 +76,7 @@ function showCubeForm(){
   form.appendChild(inputDepth);
   inputs.appendChild(form);
   inputs.appendChild(buttonSubmit);
+  inputs.appendChild(importButton)
 }
 
 function showSphereForm(){
@@ -93,6 +86,19 @@ function showSphereForm(){
   let labelRadius = document.createElement('label');
   let inputRadius = document.createElement('input');
   let buttonSubmit = document.createElement('button');
+  let importButton = importJsonButton(({ radius }) => {
+    console.log(radius)
+    inputRadius.value = radius
+    renderSphereAndExportButtons(radius)
+  })
+
+  let renderSphereAndExportButtons = (radius) => {
+    importButton.remove()
+    const filename = `sphere-${radius}`
+    saveJsonButton(filename, { radius })
+    saveObjButton(filename)
+    showSphere(radius);
+  }
 
   labelRadius.innerHTML = "Введите радиус: ";
 
@@ -104,10 +110,7 @@ function showSphereForm(){
     let radius = Number.parseFloat(inputRadius.value);
 
     if(validateForm(inputRadius)){
-      showSphere(radius);
-      const filename = `sphere-${radius}`
-      saveJsonButton(filename, { radius })
-      saveObjButton(filename)
+      renderSphereAndExportButtons(radius)
     }
   }
 
@@ -115,6 +118,7 @@ function showSphereForm(){
   form.appendChild(inputRadius);
   inputs.appendChild(form);
   inputs.appendChild(buttonSubmit);
+  inputs.appendChild(importButton)
 }
 
 function showPyramidForm(){
@@ -128,6 +132,21 @@ function showPyramidForm(){
   let labelAngles = document.createElement('label');
   let inputAngles = document.createElement('input');
   let buttonSubmit = document.createElement('button');
+  let importButton = importPyramidData(({ radius, height, angles }) => {
+    console.log(radius, height, angles)
+    inputRadius.value = radius
+    inputHeight.value = height
+    inputAngles.value = angles
+    renderPyramidAndExportButtons(radius, height, angles)
+  })
+
+  let renderPyramidAndExportButtons = (radius, height, angles) => {
+    importButton.remove()
+    showPyramid(radius, height, angles);
+    const filename = `pyramid-${radius}-${height}-${angles}`
+    saveJsonButton(filename, { radius, height, angles })
+    saveObjButton(filename)
+  }
 
   labelRadius.innerHTML = "Введите радиус описаной окружности: ";
   labelHeight.innerHTML = "Введите высоту пирамиды: ";
@@ -145,10 +164,7 @@ function showPyramidForm(){
     let angles = Number.parseFloat(inputAngles.value);
 
     if(validateForm(inputRadius, inputHeight, inputAngles)){
-      showPyramid(radius, height, angles);
-      const filename = `pyramid-${radius}-${height}-${angles}`
-      saveJsonButton(filename, { radius, height, angles })
-      saveObjButton(filename)
+      renderPyramidAndExportButtons(radius, height, angles)
     }
   }
 
@@ -160,6 +176,7 @@ function showPyramidForm(){
   form.appendChild(inputAngles);
   inputs.appendChild(form);
   inputs.appendChild(buttonSubmit);
+  inputs.appendChild(importButton)
 }
 
 function showCube(width, height, depth){
