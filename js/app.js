@@ -21,6 +21,26 @@ function removeValidityError(el){
  }
 }
 
+function saveJsonButton (name, params) {
+  const buttonSaveJson = document.createElement('button');
+  buttonSaveJson.innerText = "Зберегти вхідні дані";
+  buttonSaveJson.setAttribute('class', 'submitBtn');
+  buttonSaveJson.onclick = () =>{
+    exportJson(name, params)
+  }
+  inputs.appendChild(buttonSaveJson)
+}
+
+function saveObjButton (name) {
+  const buttonSaveObj = document.createElement('button');
+  buttonSaveObj.innerText = "Експортувати в obj файл";
+  buttonSaveObj.setAttribute('class', 'submitBtn');
+  buttonSaveObj.onclick = () =>{
+    exportObj(name,mesh)
+  }
+  inputs.appendChild(buttonSaveObj)
+}
+
 function showCubeForm(){
   clearInputForm();
   let form = document.createElement('form');
@@ -50,6 +70,9 @@ function showCubeForm(){
 
     if(validateForm(inputDepth, inputHeight, inputWidth)){
       showCube(width, height, depth);
+      const filename = `cube-${width}-${height}-${depth}`
+      saveJsonButton(filename, { width, height, depth })
+      saveObjButton(filename)
     }
   }
 
@@ -82,6 +105,9 @@ function showSphereForm(){
 
     if(validateForm(inputRadius)){
       showSphere(radius);
+      const filename = `sphere-${radius}`
+      saveJsonButton(filename, { radius })
+      saveObjButton(filename)
     }
   }
 
@@ -120,6 +146,9 @@ function showPyramidForm(){
 
     if(validateForm(inputRadius, inputHeight, inputAngles)){
       showPyramid(radius, height, angles);
+      const filename = `pyramid-${radius}-${height}-${angles}`
+      saveJsonButton(filename, { radius, height, angles })
+      saveObjButton(filename)
     }
   }
 

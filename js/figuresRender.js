@@ -5,6 +5,7 @@ const gridHelper = new THREE.GridHelper(360, 20);
 
 let figurePosition = new THREE.Vector3(12, 12, 12);
 let currentFigure;
+let mesh = undefined;
 const sceneHTML = document.getElementById('scene');
 sceneHTML.appendChild(renderer.domElement);
 
@@ -37,6 +38,7 @@ const renderSphere = (radius) =>{
   figurePosition = new THREE.Vector3(12, gridHelper.position.y + radius, 12);
   sphere.position.copy(figurePosition);
   scene.add(sphere);
+  mesh = sphere
   render();
 }
 
@@ -49,6 +51,7 @@ const renderCube = (width, height, depth) =>{
   figurePosition = new THREE.Vector3(12, gridHelper.position.y + height/2, 12);
   cube.position.copy(figurePosition);
   scene.add(cube);
+  mesh = cube
   render();
 }
 
@@ -59,8 +62,9 @@ const renderPyramid = (radius, height, angleQuantity) =>{
   let pyramid = new THREE.Mesh(geometry, material);
   currentFigure = pyramid;
   figurePosition = new THREE.Vector3(12, gridHelper.position.y + height/2, 12);
-  scene.add(pyramid);
   pyramid.position.copy(figurePosition);
+  scene.add(pyramid);
+  mesh = pyramid
   render();
 }
 
