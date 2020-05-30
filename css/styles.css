@@ -1,8 +1,75 @@
-body{
-  background-color: #1d1e22;
+body {
+  margin: 0;
+  background-color: #1e1f26;
 }
 
-.scene{
-  width: 50%; 
-  border-right: 5px solid #1a1b1f;
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.scene-container {
+  width: 50%;
+  height: 93vh;
+}
+
+.header-wrap {
+  height: 3.5rem;
+  color: white;
+  padding-left: 1.5rem;
+  font-size: 1.5em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  background-color: #1a1d21;
+}
+
+.info-container {
+  width: 50%;
+  padding: 1.5rem;
+  color: #ffffff;
+}
+
+.info-container input[type="radio"] {
+  opacity: 0.011;
+  z-index: 100;
+}
+
+.radio-group {
+  list-style-type: none;
+  margin: 25px 0 0 0;
+  padding: 0;
+}
+
+.radio-group li {
+  float: left;
+  margin: 0 5px 0 0;
+  width: 100px;
+  height: 40px;
+  position: relative;
+}
+
+.radio-group label,
+.radio-group input {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.radio-group label {
+  background-color: #353746;
+  padding: 5px;
+  cursor: pointer;
+  z-index: 90;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-group input[type="radio"]:checked+label {
+  background-image: linear-gradient(298deg, #f7a837, #db304d);
 }
