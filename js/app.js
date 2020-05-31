@@ -10,7 +10,7 @@ function removeValidityError(el){
  el.classList.remove('error');
  let errorMsg = el.previousSibling;
  if(errorMsg.tagName === 'SPAN'){
-  console.log(errorMsg);
+  console.error(errorMsg);
   errorMsg.remove();
  }
 }
@@ -27,7 +27,6 @@ function showCubeForm(){
   let inputDepth = document.createElement('input');
   let buttonSubmit = document.createElement('button');
   let importButton = importCubeData(({ width, height, depth }) => {
-    console.log(width, height, depth)
     inputWidth.value = width
     inputHeight.value = height
     inputDepth.value = depth
@@ -81,7 +80,6 @@ function showSphereForm(){
   let inputRadius = document.createElement('input');
   let buttonSubmit = document.createElement('button');
   let importButton = importJsonButton(({ radius }) => {
-    console.log(radius)
     inputRadius.value = radius
     renderSphereAndExportButtons(radius)
   })
@@ -127,7 +125,6 @@ function showPyramidForm(){
   let inputAngles = document.createElement('input');
   let buttonSubmit = document.createElement('button');
   let importButton = importPyramidData(({ radius, height, angles }) => {
-    console.log(radius, height, angles)
     inputRadius.value = radius
     inputHeight.value = height
     inputAngles.value = angles
