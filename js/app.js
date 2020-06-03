@@ -10,7 +10,7 @@ function removeValidityError(el){
  el.classList.remove('error');
  let errorMsg = el.previousSibling;
  if(errorMsg.tagName === 'SPAN'){
-  console.log(errorMsg);
+  console.error(errorMsg);
   errorMsg.remove();
  }
 }
@@ -27,7 +27,6 @@ function showCubeForm(){
   let inputDepth = document.createElement('input');
   let buttonSubmit = document.createElement('button');
   let importButton = importCubeData(({ width, height, depth }) => {
-    console.log(width, height, depth)
     inputWidth.value = width
     inputHeight.value = height
     inputDepth.value = depth
@@ -42,15 +41,15 @@ function showCubeForm(){
     showCube(width, height, depth)
   }
 
-  labelWidth.innerText = "Введите длинну стороны: ";
-  labelHeight.innerText = "Введите высоту: ";
-  labelDepth.innerText = "Введите глубину фигуры: ";
+  labelWidth.innerText = "Введіть довжину сторони: ";
+  labelHeight.innerText = "Введіть висоту: ";
+  labelDepth.innerText = "Введіть глибину фігури: ";
 
   inputWidth.oninput = () => removeValidityError(inputWidth);
   inputHeight.oninput = () => removeValidityError(inputHeight);
   inputDepth.oninput = () => removeValidityError(inputDepth);
 
-  buttonSubmit.innerText = "Готово";
+  buttonSubmit.innerText = "Створити";
   buttonSubmit.setAttribute('class', 'submitBtn');
   buttonSubmit.onclick = () =>{
     let width = Number.parseFloat(inputWidth.value);
@@ -81,7 +80,6 @@ function showSphereForm(){
   let inputRadius = document.createElement('input');
   let buttonSubmit = document.createElement('button');
   let importButton = importJsonButton(({ radius }) => {
-    console.log(radius)
     inputRadius.value = radius
     renderSphereAndExportButtons(radius)
   })
@@ -94,11 +92,11 @@ function showSphereForm(){
     showSphere(radius);
   }
 
-  labelRadius.innerHTML = "Введите радиус: ";
+  labelRadius.innerHTML = "Введіть радіус: ";
 
   inputRadius.oninput = () => removeValidityError(inputRadius);
 
-  buttonSubmit.innerText = "Готово";
+  buttonSubmit.innerText = "Створити";
   buttonSubmit.setAttribute('class', 'submitBtn');
   buttonSubmit.onclick = () =>{
     let radius = Number.parseFloat(inputRadius.value);
@@ -127,7 +125,6 @@ function showPyramidForm(){
   let inputAngles = document.createElement('input');
   let buttonSubmit = document.createElement('button');
   let importButton = importPyramidData(({ radius, height, angles }) => {
-    console.log(radius, height, angles)
     inputRadius.value = radius
     inputHeight.value = height
     inputAngles.value = angles
@@ -142,15 +139,15 @@ function showPyramidForm(){
     saveObjButton(filename)
   }
 
-  labelRadius.innerHTML = "Введите радиус описаной окружности: ";
-  labelHeight.innerHTML = "Введите высоту пирамиды: ";
-  labelAngles.innerHTML = "Введите количество углов основания: ";
+  labelRadius.innerHTML = "Введіть радіус описаної окружності: ";
+  labelHeight.innerHTML = "Введіть висоту піраміди: ";
+  labelAngles.innerHTML = "Введите кількість кутів основи: ";
 
   inputRadius.oninput = () => removeValidityError(inputRadius);
   inputHeight.oninput = () => removeValidityError(inputHeight);
   inputAngles.oninput = () => removeValidityError(inputAngles);
 
-  buttonSubmit.innerText = "Готово"
+  buttonSubmit.innerText = "Створити"
   buttonSubmit.setAttribute('class', 'submitBtn');
   buttonSubmit.onclick = () =>{
     let radius = Number.parseFloat(inputRadius.value);
@@ -195,9 +192,9 @@ function validateForm(){
       let span = document.createElement('span');
       span.setAttribute('class', 'error');
       if(!input.value){
-        span.innerText = 'Заполните поле';
+        span.innerText = 'Обов\'язкове поле';
       } else if(Number.isNaN(Number.parseFloat(input.value))){
-        span.innerText = 'Введите число';
+        span.innerText = 'Введіть число';
       }
       input.before(span);
       validated = false;

@@ -32,21 +32,40 @@ function exportJson (filename, data) {
 
 //HTML components
 function saveJsonButton (name, params) {
-  const buttonSaveJson = document.createElement('button');
-  buttonSaveJson.innerText = "Зберегти вхідні дані";
-  buttonSaveJson.setAttribute('class', 'submitBtn');
-  buttonSaveJson.onclick = () =>{
-    exportJson(name, params)
+  const id = 'jsonButton'
+  let buttonSaveJson = document.getElementById(id)
+  if (buttonSaveJson !== null) {
+    buttonSaveJson.onclick = () =>{
+      exportJson(name, params)
+    }
+  } else {
+    buttonSaveJson = document.createElement('button');
+    buttonSaveJson.id = id;
+    buttonSaveJson.innerText = "Зберегти вхідні дані";
+    buttonSaveJson.setAttribute('class', 'submitBtn');
+    buttonSaveJson.onclick = () =>{
+      exportJson(name, params)
+    }
+    inputs.appendChild(buttonSaveJson)
   }
-  inputs.appendChild(buttonSaveJson)
 }
 
 function saveObjButton (name) {
-  const buttonSaveObj = document.createElement('button');
-  buttonSaveObj.innerText = "Експортувати в obj файл";
-  buttonSaveObj.setAttribute('class', 'submitBtn');
-  buttonSaveObj.onclick = () =>{
-    exportObj(name,mesh)
+  const id = 'objButton'
+  let buttonSaveObj = document.getElementById(id)
+  if (buttonSaveObj !== null) {
+    buttonSaveObj.onclick = () =>{
+      exportObj(name,mesh)
+    }
+  } else {
+    buttonSaveObj = document.createElement('button');
+    buttonSaveObj.id = id;
+    buttonSaveObj.innerText = "Експортувати в obj файл";
+    buttonSaveObj.setAttribute('class', 'submitBtn');
+    buttonSaveObj.onclick = () =>{
+      exportObj(name,mesh)
+    }
+    inputs.appendChild(buttonSaveObj)
   }
-  inputs.appendChild(buttonSaveObj)
+
 }
